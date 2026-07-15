@@ -67,15 +67,15 @@ a { color: inherit; }
 /* ---------- Header ---------- */
 .site-header {
   background: var(--cream);
-  padding: 20px 0 36px;
+  padding: 16px 0;
   position: sticky;
-  top: 50px;
+  top: 0;
   z-index: 50;
   transition: transform 0.3s ease;
 }
 
 .site-header.is-hidden {
-  transform: translateY(-250px);
+  transform: translateY(-150px);
 }
 
 .site-header .wide-container {
@@ -86,8 +86,8 @@ a { color: inherit; }
 
 .logo img {
   display: block;
-  height: 113px;
-  width: 293px;
+  height: 48px;
+  width: 124px;
   object-fit: cover;
 }
 
@@ -98,8 +98,8 @@ a { color: inherit; }
 }
 
 .main-nav a {
+  text-decoration: none;
   color: #00e;
-  text-decoration: underline;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 17px;
 }

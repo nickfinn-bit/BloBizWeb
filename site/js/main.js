@@ -9,9 +9,21 @@ document.getElementById('contact-form').addEventListener('submit', function (e) 
   const hero = document.querySelector('.hero');
   if (!header || !hero) return;
 
+  let lastScrollY = window.scrollY;
+
   function update() {
-    const threshold = hero.offsetTop + hero.offsetHeight - header.offsetHeight;
-    header.classList.toggle('is-hidden', window.scrollY > threshold);
+    const revealZone = hero.offsetTop + hero.offsetHeight - header.offsetHeight;
+    const currentScrollY = window.scrollY;
+
+    if (currentScrollY <= revealZone) {
+      header.classList.remove('is-hidden');
+    } else if (currentScrollY > lastScrollY) {
+      header.classList.add('is-hidden');
+    } else if (currentScrollY < lastScrollY) {
+      header.classList.remove('is-hidden');
+    }
+
+    lastScrollY = currentScrollY;
   }
 
   window.addEventListener('scroll', update, { passive: true });
