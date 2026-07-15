@@ -1,0 +1,24 @@
+{
+  "name": "blobizweb",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nickfinn-bit/BloBizWeb.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/nickfinn-bit/BloBizWeb/issues"
+  },
+  "homepage": "https://github.com/nickfinn-bit/BloBizWeb#readme",
+  "dependencies": {
+    "puppeteer": "^25.3.0"
+  }
+}
