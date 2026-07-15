@@ -1,6 +1,26 @@
 document.getElementById('contact-form').addEventListener('submit', function (e) {
   e.preventDefault();
-  alert('Thank you! We will be in touch within one working day.');
+
+  const firstName = this.firstName.value;
+  const lastName = this.lastName.value;
+  const email = this.email.value;
+  const company = this.company.value;
+
+  const subject = `Let's have a chat, Bloome!`;
+  const bodyLines = [
+    `Hi Bloome team,`,
+    ``,
+    `I'd love to have a chat about how you could help my business grow.`,
+    ``,
+    `Name: ${firstName} ${lastName}`,
+    `Email: ${email}`,
+  ];
+  if (company) bodyLines.push(`Company: ${company}`);
+  bodyLines.push(``, `Looking forward to hearing from you!`);
+  const body = bodyLines.join('\n');
+
+  window.location.href = `mailto:support@bloomebusiness.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
   this.reset();
 });
 
