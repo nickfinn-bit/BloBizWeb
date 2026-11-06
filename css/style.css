@@ -41,6 +41,12 @@ body {
   font-size: 20px;
   line-height: 1.3;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, p, blockquote {
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 h1, h2, h3, .heading {
@@ -82,6 +88,7 @@ a { color: inherit; }
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: relative;
 }
 
 .logo img {
@@ -106,7 +113,30 @@ a { color: inherit; }
 
 .nav-toggle {
   display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  gap: 6px;
+  width: 32px;
+  height: 24px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  flex: 0 0 auto;
 }
+
+.nav-toggle span {
+  display: block;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--navy);
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 
 /* ---------- Hero ---------- */
 .hero {
@@ -126,14 +156,14 @@ a { color: inherit; }
 }
 
 .hero-text h1 {
-  font-size: 80px;
+  font-size: clamp(40px, 8vw, 80px);
   line-height: 1.1;
   margin-bottom: 24px;
 }
 
 .hero-text .hero-sub {
-  font-size: 32px;
-  line-height: 1.1;
+  font-size: clamp(20px, 4.5vw, 32px);
+  line-height: 1.2;
   font-weight: 400;
   margin-bottom: 36px;
 }
@@ -184,15 +214,15 @@ a { color: inherit; }
 
 .intro-banner p {
   color: var(--light-green);
-  font-size: 32px;
-  line-height: 1.1;
+  font-size: clamp(20px, 4.5vw, 32px);
+  line-height: 1.2;
   margin: 0 0 32px;
 }
 
 .intro-banner .intro-strong {
   font-family: 'Madefor Text Bold', sans-serif;
   font-weight: 700;
-  font-size: 36px;
+  font-size: clamp(22px, 5vw, 36px);
 }
 
 /* ---------- Our Process ---------- */
@@ -202,7 +232,7 @@ a { color: inherit; }
 }
 
 .our-process h2 {
-  font-size: 80px;
+  font-size: clamp(40px, 8vw, 80px);
   margin-bottom: 60px;
 }
 
@@ -247,7 +277,7 @@ a { color: inherit; }
 
 .our-toolkit h2 {
   color: var(--cream);
-  font-size: 80px;
+  font-size: clamp(40px, 8vw, 80px);
   margin-bottom: 24px;
 }
 
@@ -321,7 +351,7 @@ a { color: inherit; }
 }
 
 .our-results h2 {
-  font-size: 80px;
+  font-size: clamp(40px, 8vw, 80px);
   margin-bottom: 60px;
 }
 
@@ -357,7 +387,7 @@ a { color: inherit; }
 
 .contact h2 {
   color: var(--cream);
-  font-size: 80px;
+  font-size: clamp(40px, 8vw, 80px);
   margin-bottom: 60px;
 }
 
@@ -442,7 +472,7 @@ a { color: inherit; }
 }
 
 .footer-brand {
-  font-size: 80px;
+  font-size: clamp(40px, 8vw, 80px);
   color: var(--cream);
   margin-bottom: 40px;
   letter-spacing: 1px;
@@ -486,12 +516,43 @@ a { color: inherit; }
   .hero .wide-container { flex-direction: column; }
   .hero-text { max-width: 100%; flex-basis: auto; }
   .hero-graphic { max-width: 480px; }
+  .intro-banner .container { max-width: 100%; margin-right: auto; padding: 0 24px; }
   .process-steps { flex-direction: column; gap: 24px; }
+  .process-step { max-width: 100%; flex-basis: auto; }
   .process-arrow { margin: 8px 0; transform: rotate(90deg); }
   .toolkit-cards { grid-template-columns: 1fr; max-width: 100%; }
   .results-grid { grid-template-columns: 1fr; max-width: 100%; }
   .form-row { grid-template-columns: 1fr; }
   .footer-flex { flex-direction: column; }
-  .main-nav { display: none; }
-  .nav-toggle { display: block; }
+  .footer-graphic { flex-basis: auto; max-width: 320px; }
+  .footer-nav { grid-template-columns: 1fr 1fr; gap: 16px 24px; max-width: 100%; }
+
+  .main-nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    gap: 0;
+    margin-right: 0;
+    background: var(--cream);
+    box-shadow: 0 16px 24px rgba(0, 0, 0, 0.1);
+    padding: 8px 24px 24px;
+  }
+  .main-nav.is-open { display: flex; }
+  .main-nav a {
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(0, 70, 154, 0.12);
+    font-size: 18px;
+  }
+  .nav-toggle { display: flex; }
+}
+
+@media (max-width: 600px) {
+  .our-process, .our-toolkit { padding: 60px 0; }
+  .our-results { padding: 50px 0 40px; }
+  .contact { padding: 50px 0 40px; }
+  .intro-banner { padding: 60px 0; }
+  .site-footer { padding: 60px 0 32px; }
 }
